@@ -1,44 +1,48 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use Illuminate\Http\Request;
 
-class Accredited{
- public $fullname;
- public $credits;
- public function _construct(String $fullname, String $credits){
- $this->fullname = $fullname;
- $this->credits = $credits;
- }
- public function GetName(){
-  return $this->fullname;
- }
- public function GetCredits(){
-  return $this->credits;
- }
- public static function GiveCredit(){
-  return [
-   new Accredited('Heorhii','Lead Developer'),
-   new Accredited('Ben Hale', 'Artist'),
-   new Accredited('Gabe Newell','Steam')
-  ];
- }
+class Credit {
+    public $name;
+    public $position;
+
+    public function __construct(String $name, String $position) {
+        $this->name = $name;
+        $this->position = $position;
+    }
+
+    public function GetName(){
+        return $this->name;
+    }
+
+    public function GetPosition(){
+        return $this->position;
+    }
+
+    public static function GetCredits() {
+        return [
+          new Credit("George Ozharenkov","Lead Developer"),
+          new Credit("Ben Hale","Texture Artist"),
+          new Credit("Casey Muratori","Spiritual Guru"),
+        ];
+    }
 }
+
 
 class PagesController extends Controller
 {
     public function home(){
-  return view("/home");
+  return view("home");
  }
  public function project(){
-  return view ("/project");
+  return view ("project");
  }
  public function credits(){
   $pageTitle = 'Credits';
-  return view ("/credits",[
+  return view ("credits",[
    'pageTitle' => $pageTitle,
-   'credits' => Accredited::GiveCredit()]
+   'credits' => Credit::GetCredits()]
   );
  }
 }

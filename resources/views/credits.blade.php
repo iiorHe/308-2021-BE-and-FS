@@ -10,7 +10,7 @@
 @section("page-content")
  <ul>
   @foreach($credits as $credit)
-   <li> {{$credit->GetName()}} - {{$credit->GetCredits()}} </li>
+   <li> {{$credit->GetName()}} - {{$credit->GetPosition()}} </li>
   @endforeach
  </ul>
 @endsection
