@@ -1,16 +1,16 @@
 @extends("layout")
 @section("app-title")
-	Credits
+ Credits
 @endsection
 
 @section("page-title")
-	Credits
+ {{$pageTitle}}
 @endsection
 
 @section("page-content")
-	<ul>
-		<li> Heorhii Ozharenkov - Game Director, Lead Programmer, Level Designer </li>
-		<li> Ben "Makkon" Hale - Texture Artist </li>
-		<li> Weapon assets - ZDoom forums </li>
-	</ul>
+ <ul>
+  @foreach($credits as $credit)
+   <li> {{$credit->GetName()}} - {{$credit->GetCredits()}} </li>
+  @endforeach
+ </ul>
 @endsection
