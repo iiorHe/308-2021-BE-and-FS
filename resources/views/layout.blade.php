@@ -7,7 +7,7 @@
 <ul>
     <li><a href="/">Home</a></li>
     <li><a href="/project">Project</a></li>
-    <li><a href="/credits">Credits</a></li>
+    <li><a href="/games">Games</a></li>
 </ul>
 <h1>@yield("page-title")</h1>
 
