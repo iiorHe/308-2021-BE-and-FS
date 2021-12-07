@@ -17,14 +17,16 @@ Route::get('/', "App\Http\Controllers\PagesController@home");
 
 Route::get('/project', "App\Http\Controllers\PagesController@project");
 
-Route::get('/games', "App\Http\Controllers\GamesController@index");
+Route::resource('games', "App\Http\Controllers\GamesController");
+// Route::get('/games', "App\Http\Controllers\GamesController@index");
 
-Route::get('/games/create', "App\Http\Controllers\GamesController@create");
+// Route::get('/games/create', "App\Http\Controllers\GamesController@create");
 
-Route::get('/games-json',"App\Http\Controllers\GamesController@getList");
+// Route::get('/games-json',"App\Http\Controllers\GamesController@getList");
 
-Route::post('/games', "App\Http\Controllers\GamesController@store");
+// Route::post('/games', "App\Http\Controllers\GamesController@store");
+// Route::get('/games/{id}/edit', "App\Http\Controllers\GamesController@edit");
+// Route::patch('/games/{id}', "App\Http\Controllers\GamesController@update");
 
-Route::get('/games/{id}/edit', "App\Http\Controllers\GamesController@edit");
-Route::patch('/games/{id}', "App\Http\Controllers\GamesController@update");
-
+// Route::delete('/games/{id}', "App\Http\Controllers\GamesController@destroy");
+// Route::get('/games/{id}',"App\Http\Controllers\GamesController@show");

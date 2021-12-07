@@ -25,34 +25,43 @@ class GamesController extends Controller
     }
     public function store()
     {
-        $game = new \App\Models\Game();
-        $game->year = \request('game-year');
-        $game->title = \request('game-title');
-        $game->genre = \request('game-genre');
-        $game->devs = \request('game-devs');
-        $game->engine = \request('game-engine');
-        $game->platform = \request('game-platform');
-        $game->save();
+        \App\Models\Game::create([
+            'year' => \request('game-year'),
+            'title' => \request('game-title'),
+            'genre' => \request('game-genre'),
+            'devs' => \request('game-devs'),
+            'engine' => \request('game-engine'),
+            'platform' => \request('game-platform'),
+        ]);
         return redirect('/games');
     }
-    public function edit($id)
+    public function edit(\App\Models\Game $game)
     {
-        $game = \App\Models\Game::find($id);
         return view('games/edit',
         [
             'game' => $game,
         ]);
     }
-    public function update($id)
+    public function update(\App\Models\Game $game)
     {
-        $game = \App\Models\Game::find($id);
-        $game->year = \request('game-year');
-        $game->title = \request('game-title');
-        $game->genre = \request('game-genre');
-        $game->devs = \request('game-devs');
-        $game->engine = \request('game-engine');
-        $game->platform = \request('game-platform');
+        $game->update(
+            \request(['year','title','genre','devs','engine','platform'])
+        );
         $game->save();
         return redirect('/games');
+    }
+    public function destroy(\App\Models\Game $game)
+    {
+        $game->delete();
+    }
+    public function show(\App\Models\Game $game)
+    {
+        if (is_null($game)) {
+            return "Game does not exist!";
+        }
+
+        return view('games/show', [
+            'game' => $game
+        ]);
     }
 }

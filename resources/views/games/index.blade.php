@@ -25,7 +25,9 @@
         <td>{{$game->devs}}</td>
         <td>{{$game->engine}}</td>
         <td>{{$game->platform}}</td>
-        <td><a href="/games/{{ $game->id }}/edit" class="btn btn-outline-primary">Edit</a> </td>
+        <td>
+            <a href="/games/{{ $game->id }}" class="btn btn-outline-secondary">Show</a>
+            <a href="/games/{{ $game->id }}/edit" class="btn btn-outline-primary">Edit</a> </td>
     </tr>
     @endforeach
 </table>

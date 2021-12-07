@@ -3,6 +3,8 @@
     <meta charset="UTF-8">
     <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/cover.css') }}">
+    <script src="{{ asset("js/jquery-3.6.0.min.js") }}"></script>
+    <script src="{{ asset("js/bootstrap.min.js") }}"></script>
     <title>@yield("app-title")</title>
 </head>
 <body class="text-center">
