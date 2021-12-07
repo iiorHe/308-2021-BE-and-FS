@@ -8,6 +8,7 @@
 @endsection
 
 @section("page-content")
+<a href="/games/create" class="btn btn-outline-success float-left" style="margin-bottom: 10px;">Add new game</a>
 <table class="table table-striped table-dark">
     <tr><th>Year</th>
         <th>Title</th>
@@ -24,6 +25,7 @@
         <td>{{$game->devs}}</td>
         <td>{{$game->engine}}</td>
         <td>{{$game->platform}}</td>
+        <td><a href="/games/{{ $game->id }}/edit" class="btn btn-outline-primary">Edit</a> </td>
     </tr>
     @endforeach
 </table>

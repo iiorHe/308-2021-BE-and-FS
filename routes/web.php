@@ -19,4 +19,12 @@ Route::get('/project', "App\Http\Controllers\PagesController@project");
 
 Route::get('/games', "App\Http\Controllers\GamesController@index");
 
+Route::get('/games/create', "App\Http\Controllers\GamesController@create");
+
 Route::get('/games-json',"App\Http\Controllers\GamesController@getList");
+
+Route::post('/games', "App\Http\Controllers\GamesController@store");
+
+Route::get('/games/{id}/edit', "App\Http\Controllers\GamesController@edit");
+Route::patch('/games/{id}', "App\Http\Controllers\GamesController@update");
+
