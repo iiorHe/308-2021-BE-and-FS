@@ -18,3 +18,5 @@ Route::get('/', "App\Http\Controllers\PagesController@home");
 Route::get('/project', "App\Http\Controllers\PagesController@project");
 
 Route::get('/games', "App\Http\Controllers\GamesController@index");
+
+Route::get('/games-json',"App\Http\Controllers\GamesController@getList");

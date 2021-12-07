@@ -15,5 +15,9 @@ class GamesController extends Controller
             'pageTitle' => 'List of games',    
         ]);
     }
-    //
+    
+    public function getList()
+    {
+        return \App\Models\Game::all();
+    }
 }

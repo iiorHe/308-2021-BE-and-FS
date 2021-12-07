@@ -8,7 +8,7 @@
 @endsection
 
 @section("page-content")
-<table>
+<table class="table table-striped table-dark">
     <tr><th>Year</th>
         <th>Title</th>
         <th>Genre</th>
@@ -18,12 +18,12 @@
     </tr>
     @foreach($games as $game)
     <tr>
-        <td>{{$game->GetYear()}}</td>
-        <td>{{$game->GetTitle()}}</td>
-        <td>{{$game->GetGenre()}}</td>
-        <td>{{$game->GetDevs()}}</td>
-        <td>{{$game->GetEngine()}}</td>
-        <td>{{$game->GetPlatform()}}</td>
+        <td>{{$game->year}}</td>
+        <td>{{$game->title}}</td>
+        <td>{{$game->genre}}</td>
+        <td>{{$game->devs}}</td>
+        <td>{{$game->engine}}</td>
+        <td>{{$game->platform}}</td>
     </tr>
     @endforeach
 </table>
