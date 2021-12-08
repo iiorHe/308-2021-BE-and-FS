@@ -9,70 +9,48 @@
 
         {{ method_field("patch") }}
         <div class="form-group">
-            <label for="game-year">Year</label>
-            <input type="number" class="{{$errors->has('year')?'is-invalid':''}} form-control" name="year" id="game-year" placeholder="" value="{{ old('year') ? old('year') : $game->year}}">
-            <small class="form-text text-danger">
-                <ul>
-                    @foreach ($errors->get('year') as $error)
-                        <li>{{$error}}</li>
-                    @endforeach
-                </ul>
-            </small>
+            @include("includes/input", [
+                'fieldId' => 'game-year', 'inputType' => 'number' ,'labelText' => 'Year',
+                'placeHolderText' => 'Input year', 'fieldValue' => $game->year
+            ])
         </div>
         <div class="form-group">
-            <label for="game-title">Title</label>
-            <input type="text" class="{{$errors->has('title')?'is-invalid':''}} form-control" name="title" id="game-title" placeholder="Title" value="{{ old('title') ? old('title') : $game->title}}">
-            <small class="form-text text-danger">
-                <ul>
-                    @foreach ($errors->get('title') as $error)
-                        <li>{{$error}}</li>
-                    @endforeach
-                </ul>
-            </small>
+            @include("includes/input", [
+                'fieldId' => 'game-title', 'inputType' => 'text' ,'labelText' => 'Title',
+                'placeHolderText' => 'Input title', 'fieldValue' => $game->title
+            ])
         </div>
         <div class="form-group">
-            <label for="game-genre">Genre</label>
-            <input type="text" class="{{$errors->has('genre')?'is-invalid':''}} form-control" name="genre" id="game-genre" placeholder="Genre" value="{{ old('genre') ? old('genre') : $game->genre}}">
-            <small class="form-text text-danger">
-                <ul>
-                    @foreach ($errors->get('genre') as $error)
-                        <li>{{$error}}</li>
-                    @endforeach
-                </ul>
-            </small>
+            @include("includes/input", [
+                'fieldId' => 'game-genre', 'inputType' => 'text' ,'labelText' => 'Genre',
+                'placeHolderText' => 'Input genre', 'fieldValue' => $game->genre
+            ])
         </div>
         <div class="form-group">
-            <label for="game-devs">Developers</label>
-            <input type="text" class="{{$errors->has('devs')?'is-invalid':''}} form-control" name="devs" id="game-devs" placeholder="Developers" value="{{ old('devs') ? old('devs') : $game->devs}}">
-            <small class="form-text text-danger">
-                <ul>
-                    @foreach ($errors->get('devs') as $error)
-                        <li>{{$error}}</li>
-                    @endforeach
-                </ul>
-            </small>
+            @include("includes/input", [
+                'fieldId' => 'game-devs', 'inputType' => 'text' ,'labelText' => 'Devs',
+                'placeHolderText' => 'Input Devs', 'fieldValue' => $game->devs
+            ])
         </div>
         <div class="form-group">
             <label for="game-engine">Engine</label>
-            <select class="browser-default custom-select" name="game-engine" id="game-engine">
-                <option selected disabled value="0">Select an Engine</option>
-                @foreach ($engines as $engine)
-                    <option @if($game->engine->id == $engine->id) selected @endif value="{{$engine->id}}">
-                    {{$engine->title}}</option>
+            <select class="browser-default custom-select" name="game-engine"
+                    id="game-engine">
+                <option selected disabled value="0">Select Engine</option>
+                @foreach($engines as $engine)
+                    <option @if($game->engine->id == $engine->id) selected @endif
+                    value="{{ $engine->id }}">{{ $engine->title }}</option>
                 @endforeach
+
             </select>
-            @include('includes/validationErr', ['errFieldName' => 'game-engine'])
+
+            @include('includes/validationErr', ['errFieldName' => "game-engine"])
         </div>
         <div class="form-group">
-            <label for="game-platform">Platform</label>
-            <input type="text" class="{{$errors->has('platform')?'is-invalid':''}} form-control" name="platform" id="game-platform" placeholder="Platform" value="{{ old('platform') ? old('platform') : $game->platform}}">
-            <small class="form-text text-danger">
-                <ul>
-                    @foreach ($errors->get('platform') as $error)
-                        <li>{{$error}}</li>
-                    @endforeach
-                </ul>
-            </small>
+            @include("includes/input", [
+                'fieldId' => 'game-platform', 'inputType' => 'text' ,'labelText' => 'Platform',
+                'placeHolderText' => 'Input platform', 'fieldValue' => $game->platform
+            ])
         </div>
         <button type="submit" class="btn btn-primary float-right">Edit</button>
 

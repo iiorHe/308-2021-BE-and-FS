@@ -103,7 +103,6 @@ class GamesController extends Controller
         $game->devs = $data['game-devs'];
         $game->engine()->associate(Engine::find($data['game-engine']));
         $game->platform = $data['game-platform'];
-
         $game->save();
         return redirect('/games');
     }
