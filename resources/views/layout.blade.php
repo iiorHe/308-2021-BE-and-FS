@@ -16,6 +16,7 @@
                     <a class="nav-link" href="/">Home</a>
                     <a class = "nav-link" href="/project">Project</a>
                     <a class="nav-link" href="/games">Games</a>
+                    <a class="nav-link" href="/engines">Engines</a>
                 </nav>
             </div>
         </header>
