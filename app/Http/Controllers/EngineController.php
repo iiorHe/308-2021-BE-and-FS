@@ -20,6 +20,29 @@ class EngineController extends Controller
         ]);
     }
 
+    private function validateData($data)
+    {
+        return $this->validate($data, [
+            'title'     => 'required|min:3',
+            'year'      => 'required|min:4|max:4',
+            'devs'      => 'required|min:2',
+            'lastupdate'=> 'required',
+            'game_id'   => 'required|exists:games,id'
+        ],[
+            'title.required' => 'Title required!',
+            'title.min' => 'Title too small!',
+            'year.required' => 'Year required!',
+            'year.min' => 'Please use a valid date',
+            'year.max' => 'Please choose a more recent date',
+            'devs.required' => 'Developers required!',
+            'devs.min' => 'Studio name too small!',
+            'lastupdate.required'   => 'Latest update required!',
+            'game_id.required' => "Game required!",
+            'game_id.exists' => "Selection non-existent!"
+
+        ]);
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -40,19 +63,7 @@ class EngineController extends Controller
      */
     public function store(Request $request)
     {
-        $data = request()->validate([
-            'title'         => 'required',
-            'year'          => 'required',
-            'devs'          => 'required',
-            'lastupdate'    => 'required',
-            'game_id'       => 'required',
-        ],[
-            'title.required'         => 'Title required',
-            'year.required'          => 'Year required',
-            'devs.required'          => 'Developer required',
-            'lastupdate.required'    => 'Last update required',
-            'game_id.required'       => 'Debut game required!',
-        ]);
+       $data = $this->validateData($request);
         \App\Models\Engine::create($data);
         return redirect('engines');
     }
@@ -78,7 +89,10 @@ class EngineController extends Controller
      */
     public function edit(Engine $engine)
     {
-        //
+        return view('engines/edit',[
+            'engine' => $engine,
+            'games' => Game::all()->sortBy('title')
+        ]);
     }
 
     /**
@@ -90,7 +104,19 @@ class EngineController extends Controller
      */
     public function update(Request $request, Engine $engine)
     {
-        //
+        $data = $this->validateData(\request());
+
+        $engine->title = $data['title'];
+        $engine->year = $data['year'];
+        $engine->devs = $data['devs'];
+        $engine->lastupdate = $data['lastupdate'];
+
+        $game = Game::find($data['game_id']);
+        $engine->game()->associate($game);
+
+        $engine->save();
+
+        return redirect('/engines');
     }
 
     /**
@@ -101,6 +127,6 @@ class EngineController extends Controller
      */
     public function destroy(Engine $engine)
     {
-        //
+        $engine->delete();
     }
 }

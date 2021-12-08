@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Engine;
 use App\Models\Game;
 class GamesController extends Controller
 {
@@ -17,7 +18,9 @@ class GamesController extends Controller
     }
     public function create()
     {
-        return view('games/create');
+        return view('games/create',[
+            'engines' => Engine::all()->sortBy('title')
+        ]);
     }
     public function getList()
     {
@@ -30,7 +33,7 @@ class GamesController extends Controller
             'game-title' => 'required|min:4',
             'game-genre' => 'required|min:3',
             'game-devs' => 'required',
-            'game-engine' => 'required',
+            'game-engine' => 'required|exists:engines,id',
             'game-platform' => 'required|min:2',
         ],[
             'game-year.required' => "Game year missing!",
@@ -42,6 +45,7 @@ class GamesController extends Controller
             "game-genre.min" => "Genre name too small!",
             'game-devs.required' => "Developers missing!",
             'game-engine.required' => "Game engine missing!",
+            'game-engine.exists' => "Engine does not exist!",
             'game-platform.required' => "Game platform missing!",
             'game-platform.min' => "Platform name too small!",
         ]);
@@ -51,7 +55,7 @@ class GamesController extends Controller
             'title'     => $data['game-title'],
             'genre'     => $data['game-genre'],
             'devs'      => $data['game-devs'],
-            'engine'    => $data['game-engine'],
+            'engine_id'    => $data['game-engine'],
             'platform'  => $data['game-platform'],
         ]);
         return redirect('/games');

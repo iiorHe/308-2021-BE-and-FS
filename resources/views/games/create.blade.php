@@ -52,14 +52,13 @@
         </div>
         <div class="form-group">
             <label for="game-engine">Engine</label>
-            <input type="text" value="{{old('game-engine')}}" class="form-control {{$errors->has('game-engine') ? 'is-invalid' : "" }}" name="game-engine" id="game-engine" placeholder="Engine">
-            <small class="form-text text-danger">
-                <ul>
-                    @foreach($errors->get('game-engine') as $error)
-                    <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </small>
+            <select class="browser-default custom-select" name="game-engine" id="game-engine">
+                <option selected disabled value="0">Select an Engine</option>
+                @foreach ($engines as $engine)
+                    <option value="{{$engine->id}}">{{$engine->title}}</option>
+                @endforeach
+            </select>
+            @include('includes/validationErr', ['errFieldName' => 'game-engine'])
         </div>
         <div class="form-group">
             <label for="game-platform">Platform</label>

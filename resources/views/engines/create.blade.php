@@ -11,28 +11,32 @@
             @include("includes/input", [
                 'fieldId' => 'title',
                 'labelText' => 'Title',
-                'placeHolderText'=>'Input title'
+                'placeHolderText'=>'Input title',
+                'inputType' => 'text'
             ])
         </div>
         <div class="form-group">
             @include("includes/input", [
                 'fieldId' => 'year',
                 'labelText' => 'Year',
-                'placeHolderText'=>'Input year'
+                'placeHolderText'=>'Input year',
+                'inputType' => 'number'
             ])
         </div>
         <div class="form-group">
             @include("includes/input", [
                 'fieldId' => 'devs',
                 'labelText' => 'Devs',
-                'placeHolderText'=>'Input Devs'
+                'placeHolderText'=>'Input Devs',
+                'inputType' => 'text'
             ])
         </div>
         <div class="form-group">
             @include("includes/input", [
                 'fieldId' => 'lastupdate',
                 'labelText' => 'Last update',
-                'placeHolderText'=>'Input last update'
+                'placeHolderText'=>'Input last update',
+                'inputType' => 'date'
             ])
         </div>
         <div class="form-group">

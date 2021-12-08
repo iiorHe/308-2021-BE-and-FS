@@ -23,7 +23,7 @@
         <td>{{$game->title}}</td>
         <td>{{$game->genre}}</td>
         <td>{{$game->devs}}</td>
-        <td>{{$game->engine}}</td>
+        <td>{{$game->engine->title}}</td>
         <td>{{$game->platform}}</td>
         <td>
             <a href="/games/{{ $game->id }}" class="btn btn-outline-secondary">Show</a>
