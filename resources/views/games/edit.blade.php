@@ -10,27 +10,69 @@
         {{ method_field("patch") }}
         <div class="form-group">
             <label for="game-year">Year</label>
-            <input type="number" class="form-control" name="year" id="game-year" placeholder="" value="{{$game->year}}">
+            <input type="number" class="{{$errors->has('year')?'is-invalid':''}} form-control" name="year" id="game-year" placeholder="" value="{{ old('year') ? old('year') : $game->year}}">
+            <small class="form-text text-danger">
+                <ul>
+                    @foreach ($errors->get('year') as $error)
+                        <li>{{$error}}</li>
+                    @endforeach
+                </ul>
+            </small>
         </div>
         <div class="form-group">
             <label for="game-title">Title</label>
-            <input type="text" class="form-control" name="title" id="game-title" placeholder="Title" value="{{$game->title}}">
+            <input type="text" class="{{$errors->has('title')?'is-invalid':''}} form-control" name="title" id="game-title" placeholder="Title" value="{{ old('title') ? old('title') : $game->title}}">
+            <small class="form-text text-danger">
+                <ul>
+                    @foreach ($errors->get('title') as $error)
+                        <li>{{$error}}</li>
+                    @endforeach
+                </ul>
+            </small>
         </div>
         <div class="form-group">
             <label for="game-genre">Genre</label>
-            <input type="text" class="form-control" name="genre" id="game-genre" placeholder="Genre" value="{{$game->genre}}">
+            <input type="text" class="{{$errors->has('genre')?'is-invalid':''}} form-control" name="genre" id="game-genre" placeholder="Genre" value="{{ old('genre') ? old('genre') : $game->genre}}">
+            <small class="form-text text-danger">
+                <ul>
+                    @foreach ($errors->get('genre') as $error)
+                        <li>{{$error}}</li>
+                    @endforeach
+                </ul>
+            </small>
         </div>
         <div class="form-group">
             <label for="game-devs">Developers</label>
-            <input type="text" class="form-control" name="devs" id="game-devs" placeholder="Developers" value="{{$game->devs}}">
+            <input type="text" class="{{$errors->has('devs')?'is-invalid':''}} form-control" name="devs" id="game-devs" placeholder="Developers" value="{{ old('devs') ? old('devs') : $game->devs}}">
+            <small class="form-text text-danger">
+                <ul>
+                    @foreach ($errors->get('devs') as $error)
+                        <li>{{$error}}</li>
+                    @endforeach
+                </ul>
+            </small>
         </div>
         <div class="form-group">
             <label for="game-engine">Engine</label>
-            <input type="text" class="form-control" name="engine" id="game-engine" placeholder="Engine" value="{{$game->engine}}">
+            <input type="text" class="{{$errors->has('engine')?'is-invalid':''}} form-control" name="engine" id="game-engine" placeholder="Engine" value="{{ old('engine') ? old('engine') : $game->engine}}">
+            <small class="form-text text-danger">
+                <ul>
+                    @foreach ($errors->get('engine') as $error)
+                        <li>{{$error}}</li>
+                    @endforeach
+                </ul>
+            </small>
         </div>
         <div class="form-group">
             <label for="game-platform">Platform</label>
-            <input type="text" class="form-control" name="platform" id="game-platform" placeholder="Platform" value="{{$game->platform}}">
+            <input type="text" class="{{$errors->has('platform')?'is-invalid':''}} form-control" name="platform" id="game-platform" placeholder="Platform" value="{{ old('platform') ? old('platform') : $game->platform}}">
+            <small class="form-text text-danger">
+                <ul>
+                    @foreach ($errors->get('platform') as $error)
+                        <li>{{$error}}</li>
+                    @endforeach
+                </ul>
+            </small>
         </div>
         <button type="submit" class="btn btn-primary float-right">Edit</button>
 
