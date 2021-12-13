@@ -1,7 +1,7 @@
 @extends("layout")
 
 @section("app-title")
-    List of games
+    Games
 @endsection
 
 @section("page-title")

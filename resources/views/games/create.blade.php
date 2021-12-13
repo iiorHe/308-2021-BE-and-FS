@@ -1,6 +1,6 @@
 @extends("layout")
 
-@section("app-title", "Games list")
+@section("app-title", "Games")
 @section("page-title", "Create new game")
 
 @section("page-content")
