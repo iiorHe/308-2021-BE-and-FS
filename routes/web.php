@@ -18,6 +18,7 @@ Route::get('/', "App\Http\Controllers\PagesController@home");
 Route::get('/project', "App\Http\Controllers\PagesController@project");
 
 Route::resource('games', "App\Http\Controllers\GamesController");
+Route::resource('devs', "App\Http\Controllers\DevController");
 // Route::get('/games', "App\Http\Controllers\GamesController@index");
 
 // Route::get('/games/create', "App\Http\Controllers\GamesController@create");
