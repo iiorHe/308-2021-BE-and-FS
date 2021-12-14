@@ -10,6 +10,7 @@ class GamesController extends Controller
     private $dev;
     public function __construct(Request $request)
     {
+        $this->middleware('auth');
         $this->dev = Dev::find($request->route('devid'));
         view()->share(
             'dev_filter_id',$request->route('devid')
