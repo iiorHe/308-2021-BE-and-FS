@@ -36,7 +36,7 @@
                     <option value="{{$dev->id}}">{{$dev->name}}</option>
                 @endforeach
             </select>
-            @include('includes/validationErr',['errFieldName' => "dev_id"])
+            @include('includes/validationErr',['errFieldName' => "game-devs"])
         </div>
 
         <div class="form-group">
