@@ -8,42 +8,24 @@
         {{ csrf_field() }}
 
         <div class="form-group">
-            <label for="name">Name</label>
-            <input type="text" value="{{old('name')}}" name="name" id="name" placeholder="Enter name"
-            class="form-control {{$errors->has('name') ? 'is-invalid' : ''}}">
-            <small class="form-text text-danger">
-                <ul>
-                    @foreach ($errors->get('name') as $error)
-                        <li>{{$error}}</li>
-                    @endforeach
-                </ul>
-            </small>
+            @include("includes/input",[
+                'fieldId' => 'name', 'labelText' => 'Name',
+                'placeHolderText' => 'Enter name', 'inputType' => 'text'
+            ])
         </div>
 
         <div class="form-group">
-            <label for="year">Year</label>
-            <input type="number" value="{{old('year')}}" name="year" id="year" placeholder="Enter year"
-            class="form-control {{$errors->has('year') ? 'is-invalid' : ''}}">
-            <small class="form-text text-danger">
-                <ul>
-                    @foreach ($errors->get('year') as $error)
-                        <li>{{$error}}</li>
-                    @endforeach
-                </ul>
-            </small>
+            @include("includes/input",[
+                'fieldId' => 'year', 'labelText' => 'Year',
+                'placeHolderText' => 'Enter year', 'inputType' => 'number'
+            ])
         </div>
 
         <div class="form-group">
-            <label for="based">Based</label>
-            <input type="text" value="{{old('based')}}" name="based" id="based" placeholder="Enter location"
-            class="form-control {{$errors->has('based') ? 'is-invalid' : ''}}">
-            <small class="form-text text-danger">
-                <ul>
-                    @foreach ($errors->get('based') as $error)
-                        <li>{{$error}}</li>
-                    @endforeach
-                </ul>
-            </small>
+            @include("includes/input",[
+                'fieldId' => 'based', 'labelText' => 'Based',
+                'placeHolderText' => 'Enter location', 'inputType' => 'text'
+            ])
         </div>
 
         <div class="form-group">
@@ -54,13 +36,7 @@
                     <option value="{{$game->id}}">{{$game->title}}</option>
                 @endforeach
             </select>
-            <small class="form-text text-danger">
-                <ul>
-                    @foreach ($errors->get('debut_game_id') as $error)
-                        <li>{{$error}}</li>
-                    @endforeach
-                </ul>
-            </small>
+            @include('includes/validationErr',['errFieldName' => "debut_game_id"])
         </div>
         
         <button type="submit" class="btn btn-primary float-right">Add</button>
