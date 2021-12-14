@@ -7,13 +7,19 @@ use App\Models\Game;
 use App\Models\Dev;
 class GamesController extends Controller
 {
-    public function index($dev_id = null)
+    private $dev;
+    public function __construct(Request $request)
     {
-        if($dev_id){
-            $dev = Dev::find($dev_id);
-            $games = $dev->games->sortBy("title");
+        $this->dev = Dev::find($request->route('devid'));
+        view()->share(
+            'dev_filter_id',$request->route('devid')
+        );
+    }
+    public function index($dv)
+    {
+        if($this->dev){
+            $games = $this->dev->games->sortBy("title");
         } else {
-            $dev = null;
             $games = \App\Models\Game::all()->sortBy("title");
         }
 
@@ -22,7 +28,6 @@ class GamesController extends Controller
             'pageTitle' => 'Games',
 
             'devs' => Dev::all()->sortBy('name'),
-            'dev_filter' => $dev
         ]);
     }
     private function validateData($data)
@@ -49,7 +54,7 @@ class GamesController extends Controller
             'game-platform.min' => "Platform name too small!",
         ]);
     }
-    public function create()
+    public function create($dv)
     {
         return view('games/create',[
             'devs' => Dev::all()->sortBy('name')
@@ -59,7 +64,7 @@ class GamesController extends Controller
     {
         return \App\Models\Game::all();
     }
-    public function store()
+    public function store($dv)
     {
         $data = $this->validateData(request());
 
@@ -71,9 +76,9 @@ class GamesController extends Controller
             'engine'    => $data['game-engine'],
             'platform'  => $data['game-platform'],
         ]);
-        return redirect('/games');
+        return redirect('dev/'.$dv.'/games');
     }
-    public function edit(\App\Models\Game $game)
+    public function edit($dv, \App\Models\Game $game)
     {
         return view('games/edit',
         [
@@ -81,7 +86,7 @@ class GamesController extends Controller
             'devs' => Dev::all()->sortBy('name')
         ]);
     }
-    public function update(\App\Models\Game $game)
+    public function update($dv, \App\Models\Game $game)
     {
         $data = $this->validateData(\request());
         $game->year = $data['game-year'];
@@ -91,19 +96,15 @@ class GamesController extends Controller
         $game->engine = $data['game-engine'];
         $game->platform = $data['game-platform'];
         $game->save();
-        return redirect('/games');
+        return redirect('dev/'.$dv.'/games');
     }
-    public function destroy(\App\Models\Game $game)
+    public function destroy($dv,\App\Models\Game $game)
     {
         $game->delete();
     }
-    public function show(\App\Models\Game $game)
+    public function show($dv,\App\Models\Game $game)
     {
-        if (is_null($game)) {
-            return "Game does not exist!";
-        }
-
-        return view('games/show', [
+        return view('games/show',[
             'game' => $game
         ]);
     }

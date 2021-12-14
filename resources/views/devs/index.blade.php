@@ -22,7 +22,7 @@
                     <td>{{$dev->based}}</td>
                     <td>
                         <a href="/devs/{{$dev->id}}" class="btn btn-outline-secondary">Show</a>
-                        <a href="games/dev/{{$dev->id}}" class="btn btn-outline-secondary">Titles</a>
+                        <a href="/dev/{{$dev->id}}/games" class="btn btn-outline-secondary">Titles</a>
                         <a href="/devs/{{$dev->id}}/edit" class="btn btn-outline-primary">Edit</a>
                     </td>
                 </tr>

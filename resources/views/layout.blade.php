@@ -15,7 +15,7 @@
                 <nav class="nav nav-masthead justify-content-center">
                     <a class="nav-link" href="/">Home</a>
                     <a class = "nav-link" href="/project">Project</a>
-                    <a class="nav-link" href="/games">Games</a>
+                    <a class="nav-link" href="/dev/0/games">Games</a>
                     <a class="nav-link" href="/devs">Developers</a>
                 </nav>
             </div>

@@ -4,7 +4,7 @@
 @section("page-title", "Edit game")
 
 @section("page-content")
-    <form method="post" action="/games/{{$game->id}}" class="text-left">
+    <form method="post" action="/dev/{{$dev_filter_id}}/games/{{$game->id}}" class="text-left">
         @csrf
         {{method_field("patch")}}
         <div class="form-group">
@@ -94,7 +94,7 @@
             $("#delete-game").click(function () {
                 var id = {!! $game->id !!} ;
                 $.ajax({
-                    url: '/games/' + id,
+                    url: '/dev/{{$dev_filter_id}}/games/' + id,
                     type: 'post',
                     data: {
                         _method: 'delete',
@@ -102,7 +102,7 @@
                     },
 
                     success:function (msg) {
-                        location.href="/games";
+                        location.href="/dev/{{$dev_filter_id}}/games";
                     }
                 });
             });

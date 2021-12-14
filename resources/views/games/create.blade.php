@@ -4,7 +4,7 @@
 @section("page-title", "Create new game")
 
 @section("page-content")
-    <form method="post" action="/games" class="text-left">
+    <form method="post" action="/dev/{{$dev_filter_id}}/games" class="text-left">
         {{ csrf_field() }}
 
         <div class="form-group">
@@ -33,7 +33,9 @@
             <select class="browser-default custom-select" name="game-devs" id="game-devs">
                 <option selected disabled value="0">Select a developer</option>
                 @foreach ($devs as $dev)
-                    <option value="{{$dev->id}}">{{$dev->name}}</option>
+                    <option value="{{$dev->id}}" @if($dev_filter_id == $dev->id) selected @endif>
+                        {{$dev->name}}
+                    </option>
                 @endforeach
             </select>
             @include('includes/validationErr',['errFieldName' => "game-devs"])

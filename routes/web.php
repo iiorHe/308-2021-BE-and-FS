@@ -17,7 +17,7 @@ Route::get('/', "App\Http\Controllers\PagesController@home");
 
 Route::get('/project', "App\Http\Controllers\PagesController@project");
 
-Route::resource('games', "App\Http\Controllers\GamesController");
+Route::resource('/dev/{devid}/games', "App\Http\Controllers\GamesController");
 
 Route::resource('devs', "App\Http\Controllers\DevController");
 

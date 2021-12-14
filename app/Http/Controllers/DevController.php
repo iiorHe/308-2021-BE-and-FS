@@ -84,7 +84,7 @@ class DevController extends Controller
     {
         return view("devs/edit",[
             'dev' => $dev,
-            'games' => Game::all()->sortBy('title')
+            'games' => $dev->games->sortBy('title')
         ]);
     }
 
