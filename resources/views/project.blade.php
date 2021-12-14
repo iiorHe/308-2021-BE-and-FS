@@ -1,7 +1,7 @@
 @extends("layout")
 
 @section("app-title")
-    Pictures
+    Project
 @endsection
 
 @section("page-title")

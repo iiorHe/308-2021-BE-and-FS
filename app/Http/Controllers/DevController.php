@@ -20,6 +20,22 @@ class DevController extends Controller
         ]);
     }
 
+    private function validateData($data)
+    {
+        return $this->validate($data,[
+            'name' => 'required',
+            'year' => 'required',
+            'based' => 'required',
+            'debut_game_id' => 'required|exists:games,id'
+        ],[
+            'name.required' => 'Name required!',
+            'year.required' => 'Year required!',
+            'based.required' => 'Location required!',
+            'debut_game_id.required' => 'Debut title required!',
+            'debut_game_id.exists' => 'Error! Game does not exist.'
+        ]);
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -40,18 +56,7 @@ class DevController extends Controller
      */
     public function store(Request $request)
     {
-        $data = request()->validate([
-            'name' => 'required',
-            'year' => 'required',
-            'based' => 'required',
-            'debut_game_id' => 'required|exists:games,id'
-        ],[
-            'name.required' => 'Name required!',
-            'year.required' => 'Year required!',
-            'based.required' => 'Location required!',
-            'debut_game_id.required' => 'Debut title required!',
-            'debut_game_id.exists' => 'Error! Game does not exist.'
-        ]);
+        $data = $this->validateData($request);
         \App\Models\Dev::create($data);
         return redirect('/devs');
     }
@@ -77,7 +82,10 @@ class DevController extends Controller
      */
     public function edit(Dev $dev)
     {
-        //
+        return view("devs/edit",[
+            'dev' => $dev,
+            'games' => Game::all()->sortBy('title')
+        ]);
     }
 
     /**
@@ -89,7 +97,17 @@ class DevController extends Controller
      */
     public function update(Request $request, Dev $dev)
     {
-        //
+        $data = $this->validateData(\request());
+
+        $dev->name = $data['name'];
+        $dev->year = $data['year'];
+        $dev->based = $data['based'];
+
+        $game = Game::find($data['debut_game_id']);
+        $dev->game()->associate($game);
+
+        $dev->save();
+        return redirect('/devs');
     }
 
     /**
@@ -100,6 +118,6 @@ class DevController extends Controller
      */
     public function destroy(Dev $dev)
     {
-        //
+        $dev->delete();
     }
 }
