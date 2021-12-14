@@ -5,6 +5,7 @@
     <link rel="stylesheet" href="{{ asset('css/cover.css') }}">
     <script src="{{ asset("js/jquery-3.6.0.min.js") }}"></script>
     <script src="{{ asset("js/bootstrap.min.js") }}"></script>
+    <script src="{{ asset("js/popper.min.js") }}"></script> 
     <title>@yield("app-title")</title>
 </head>
 <body class="text-center">
@@ -12,7 +13,38 @@
         <header class="masthead mb-auto">
             <div class="inner">
                 <h3 class="masthead-brand">@yield("app-title")</h3>
+                <nav class="nav justify-content-end">
+                    @guest
+                            @if (Route::has('login'))
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                                </li>
+                            @endif
+
+                            @if (Route::has('register'))
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                </li>
+                            @endif
+                        @else
+                            <li class="nav-item">
+                                <a id="" class="nav-link" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                    {{ Auth::user()->name }}
+                                </a>
+                                    <a class=" nav-item" href="{{ route('logout') }}"
+                                       onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                        {{ __('Logout') }}
+                                    </a>
+
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                        @csrf
+                                    </form>
+                            </li>
+                        @endguest
+                </nav>
                 <nav class="nav nav-masthead justify-content-center">
+                    <a class=nav-link href="/secret">Secret</a>
                     <a class="nav-link" href="/">Home</a>
                     <a class = "nav-link" href="/project">Project</a>
                     <a class="nav-link" href="/dev/0/games">Games</a>

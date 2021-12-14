@@ -22,6 +22,8 @@ Route::resource('/dev/{devid}/games', "App\Http\Controllers\GamesController");
 Route::resource('devs', "App\Http\Controllers\DevController");
 
 Route::get('games/dev/{id}',"App\Http\Controllers\GamesController@index");
+
+Route::get('/secret')->middleware('supersecret');
 // Route::get('/games', "App\Http\Controllers\GamesController@index");
 
 // Route::get('/games/create', "App\Http\Controllers\GamesController@create");
