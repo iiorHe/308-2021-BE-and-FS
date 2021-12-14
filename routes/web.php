@@ -34,3 +34,6 @@ Route::get('games/dev/{id}',"App\Http\Controllers\GamesController@index");
 
 // Route::delete('/games/{id}', "App\Http\Controllers\GamesController@destroy");
 // Route::get('/games/{id}',"App\Http\Controllers\GamesController@show");
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
