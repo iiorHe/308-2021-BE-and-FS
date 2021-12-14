@@ -15,5 +15,12 @@ class Dev extends Model
             'id'
         );
     }
+    public function games(){
+        return $this->hasMany(
+            Game::class,
+            'dev_id',
+            'id'
+        );
+    }
     use HasFactory;
 }
