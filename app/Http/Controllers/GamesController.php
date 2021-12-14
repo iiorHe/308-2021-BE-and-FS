@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Game;
+use App\Models\Dev;
 class GamesController extends Controller
 {
     public function index()
@@ -17,7 +18,9 @@ class GamesController extends Controller
     }
     public function create()
     {
-        return view('games/create');
+        return view('games/create',[
+            'devs' => Dev::all()->sortBy('name')
+        ]);
     }
     public function getList()
     {
@@ -29,7 +32,7 @@ class GamesController extends Controller
             'game-year' => 'required|min:4|max:4',
             'game-title' => 'required|min:4',
             'game-genre' => 'required|min:3',
-            'game-devs' => 'required',
+            'game-devs' => 'required|exists:devs,id',
             'game-engine' => 'required',
             'game-platform' => 'required|min:2',
         ],[
@@ -41,6 +44,7 @@ class GamesController extends Controller
             'game-genre.required' => "Game genre missing!",
             "game-genre.min" => "Genre name too small!",
             'game-devs.required' => "Developers missing!",
+            'game-devs.exists' => "Developer does not exist!",
             'game-engine.required' => "Game engine missing!",
             'game-platform.required' => "Game platform missing!",
             'game-platform.min' => "Platform name too small!",
@@ -50,7 +54,7 @@ class GamesController extends Controller
             'year'      => $data['game-year'],
             'title'     => $data['game-title'],
             'genre'     => $data['game-genre'],
-            'devs'      => $data['game-devs'],
+            'dev_id'    => $data['game-devs'],
             'engine'    => $data['game-engine'],
             'platform'  => $data['game-platform'],
         ]);

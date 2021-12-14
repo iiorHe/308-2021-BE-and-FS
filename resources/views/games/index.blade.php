@@ -22,7 +22,7 @@
         <td>{{$game->year}}</td>
         <td>{{$game->title}}</td>
         <td>{{$game->genre}}</td>
-        <td>{{$game->devs}}</td>
+        <td>{{$game->dev->name}}</td>
         <td>{{$game->engine}}</td>
         <td>{{$game->platform}}</td>
         <td>
